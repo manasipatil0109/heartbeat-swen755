@@ -5,6 +5,9 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -22,6 +25,12 @@ public class SmartDoorbellServer {
         // Starting the consolidated heartbeat task
         System.out.println("Starting Heartbeat Task");
         Future<?> heartbeatFuture = executorService.submit(new HeartbeatTask());
+
+        // Schedule a task to stop motion detection after a random delay between 20-30 seconds
+        scheduleTaskWithRandomDelay(() -> {
+            motionRunning.set(false);
+            System.out.println("Motion detection stopped.");
+        });
 
         // User input to stop threads to simulate crashing the features
         Scanner scanner = new Scanner(System.in);
@@ -53,6 +62,20 @@ public class SmartDoorbellServer {
                     System.out.println("Invalid input. Please try again.");
             }
         }
+    }
+
+    private static void scheduleTaskWithRandomDelay(Runnable task) {
+        // Create a ScheduledExecutorService with a single thread
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    
+        // Generate a random delay between 20 and 30 seconds
+        int delay = ThreadLocalRandom.current().nextInt(20, 31); // Random delay between 20-30 seconds
+    
+        // Schedule the task to run after the random delay
+        scheduler.schedule(task, delay, TimeUnit.SECONDS);
+    
+        // Shutdown the scheduler after scheduling the task
+        scheduler.shutdown();
     }
 
     static class HeartbeatTask implements Runnable {
