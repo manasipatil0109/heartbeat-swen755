@@ -8,6 +8,12 @@ Non-deterministic failure simulation.
 Heartbeat monitoring to detect crashes of the critical features.
 Client alerts when any feature stops functioning.
 
+## Class Diagram
+![Class Diagram](diagrams/ClassDiagram.jpeg)
+
+## Sequence Diagram
+![Sequence Diagram](diagrams/SequenceDiagram.jpeg)
+
 ## How to Run:
 ### Server Setup:
 1. Compile and run the SmartDoorbellServer.java.
