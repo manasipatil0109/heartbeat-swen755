@@ -18,10 +18,11 @@ Client alerts when any feature stops functioning.
 ### Server Setup:
 1. Compile and run the SmartDoorbellServer.java.
 2. This will start a server that continuously monitors the status of video recording, motion detection, and lock control features.
-3. To stop a feature, input commands like:
-+ stop video
-+ stop motion
-+ stop lock
+3. To stop a feature, input commands like
+    - `stop video`
+    - `stop motion`
+    - `stop lock`
+  
 The feature will be marked as stopped, and the heartbeat message will reflect this change.
 
 ### Client Setup:
@@ -44,5 +45,5 @@ The feature will be marked as stopped, and the heartbeat message will reflect th
 + The server sends heartbeat messages every second, which the client receives and processes in real time.
 
 ## Failure Simulation:
-+ Each feature can be stopped by the user, simulating random non-deterministic failures.
++ Each feature can be stopped by the user, simulating non-deterministic failures.
 + The client detects these failures by processing the heartbeat messages and raises an alert when a failure is detected.
