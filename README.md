@@ -47,3 +47,6 @@ The feature will be marked as stopped, and the heartbeat message will reflect th
 ## Failure Simulation:
 + Each feature can be stopped by the user, simulating non-deterministic failures.
 + The client detects these failures by processing the heartbeat messages and raises an alert when a failure is detected.
+
+## AI Generated Code:
+This project utilizes an AI generated code for the initial structure of the code, enhancing productivity and ensuring consistency across the codebase.
