@@ -13,22 +13,16 @@ public class SmartDoorbellClient {
             String message;
             while ((message = in.readLine()) != null) {
                 System.out.println("Received: " + message);
-                checkFeatureStatus(message);
+                checkSystemStatus(message);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void checkFeatureStatus(String message) {
-        if (message.contains("video recording is stopped")) {
-            System.out.println("Alert: Video recording feature has stopped.");
-        }
-        if (message.contains("motion detection is stopped")) {
-            System.out.println("Alert: Motion detection feature has stopped.");
-        }
-        if (message.contains("lock control is stopped")) {
-            System.out.println("Alert: Lock control feature has stopped.");
+    private static void checkSystemStatus(String message) {
+        if (message.contains("System is stopped")) {
+            System.out.println("Alert: The system has stopped.");
         }
     }
 }
