@@ -24,7 +24,6 @@ public class FaultRecoveryClient {
                 String message;
                 while ((message = in.readLine()) != null && primaryRunning) {
                     System.out.println("Received from Primary: " + message);
-                    checkSystemStatus(message, "Primary");
                 }
             } catch (IOException e) {
                 System.out.println("Primary server connection failed: " + e.getMessage());
@@ -42,7 +41,6 @@ public class FaultRecoveryClient {
                 while ((message = in.readLine()) != null) {
                     if (!primaryRunning) {
                         System.out.println("Received from Secondary: " + message);
-                        checkSystemStatus(message, "Secondary");
                     }
                 }
             } catch (IOException e) {
@@ -54,17 +52,6 @@ public class FaultRecoveryClient {
                     break;
                 }
             }
-        }
-    }
-
-    private static void checkSystemStatus(String message, String serverName) {
-        if (message.contains("system is stopped")) {
-            System.out.println("Alert: " + serverName + " system has stopped.");
-            if (serverName.equals("Primary")) {
-                primaryRunning = false;
-            }
-        } else if (message.contains("with counter")) {
-            System.out.println("Counter value from " + serverName + ": " + message);
         }
     }
 }
