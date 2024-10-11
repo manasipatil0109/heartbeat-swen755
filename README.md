@@ -1,7 +1,7 @@
 # Smart Doorbell
 
 ## Overview:
-The Smart Doorbell system is designed to monitor three critical features: **video recording, motion detection,** and **lock control**. These features are continuously monitored for failures using a heartbeat mechanism. The system employs active redundancy, meaning both primary and secondary servers operate simultaneously to ensure high availability and fault tolerance.
+The Smart Doorbell program is designed to simulate any regular Smart Doorbell system. The system is continuously monitored for failures using a heartbeat mechanism. The system uses active redundancy, meaning both primary and secondary servers operate simultaneously to ensure high availability and fault tolerance.
 
 ## Key Features:
 + Non-deterministic failure simulation.
@@ -26,37 +26,28 @@ The program mimics a real-world smart doorbell system that requires continuous o
 
 ## How to Run:
 ### Server Setup:
-1. Compile and run the SmartDoorbellServer.java.
-2. This will start a server that continuously monitors the status of video recording, motion detection, and lock control features.
-3. To stop a feature, input commands like
-    - `stop video`
-    - `stop motion`
-    - `stop lock`
-  
-The feature will be marked as stopped, and the heartbeat message will reflect this change.
+1. Compile and run the SmartDoorbellServers.
+2. This will start the two servers that continuously simulate the Smart Doorbell system.
+3. The servers have a random function to crash them which cannot be controlled in runtime.
 
 ### Client Setup:
-1. Compile and run the SmartDoorbellClient.java.
-2. The client will connect to the server and listen for heartbeat messages.
-3. The client will print the status of the features and raise an alert if any feature has stopped.
-
-## Commands:
-+ stop video – Simulate video recording feature crash.
-+ stop motion – Simulate motion detection feature crash.
-+ stop lock – Simulate lock control feature crash.
-+ exit – Shut down the server.
+1. Compile and run the FaultRecoveryClient.java.
+2. The client will connect to the servers and listen for heartbeat messages.
+3. The client will print the status of the counter and raise an alert if any of the server has stopped.
 
 ## Dependencies:
 + Java 8 or later
 + No external libraries required
 
 ## Note:
-+ The server and client should be run on the same machine, or the host address in SmartDoorbellClient should be updated accordingly.
++ The server and client should be run on the same machine, or the host address in Client program should be updated accordingly.
 + The server sends heartbeat messages every second, which the client receives and processes in real time.
 
 ## Failure Simulation:
-+ Each feature can be stopped by the user, simulating non-deterministic failures.
-+ The client detects these failures by processing the heartbeat messages and raises an alert when a failure is detected.
++ The system can introduce failures in a non-deterministic manner.
++ This randomness tests the robustness of the system, ensuring that it can handle unpredictable real-world crashes.
++ A random number is generated and if it lies within the required range it throws an exception crashing the thread.
 
 ## AI Generated Code:
 This project utilizes an AI generated code for the initial structure of the code, enhancing productivity and ensuring consistency across the codebase.
+Microsoft Copilot is ustilized to generate the basic structure of the client and server.
