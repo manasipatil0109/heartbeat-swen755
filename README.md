@@ -50,4 +50,4 @@ The program mimics a real-world smart doorbell system that requires continuous o
 
 ## AI Generated Code:
 This project utilizes an AI generated code for the initial structure of the code, enhancing productivity and ensuring consistency across the codebase.
-Microsoft Copilot is ustilized to generate the basic structure of the client and server.
+Microsoft Copilot is utilized to generate the basic structure of the client and server, and it is used to generate the logic for implementing the counter state export to the file.
