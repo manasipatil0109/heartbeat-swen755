@@ -1,18 +1,28 @@
-# Smart Doorbell Heartbeat Monitoring
+# Smart Doorbell
 
 ## Overview:
-This project implements the "heartbeat" tactic for monitoring a critical process. It simulates a smart doorbell system where three features—**video recording, motion detection,** and **lock control**—are monitored. The heartbeat mechanism detects the failure of any feature in real time.
+The Smart Doorbell system is designed to monitor three critical features: **video recording, motion detection,** and **lock control**. These features are continuously monitored for failures using a heartbeat mechanism. The system employs active redundancy, meaning both primary and secondary servers operate simultaneously to ensure high availability and fault tolerance.
 
 ## Key Features:
-Non-deterministic failure simulation.
-Heartbeat monitoring to detect crashes of the critical features.
-Client alerts when any feature stops functioning.
++ Non-deterministic failure simulation.
++ Heartbeat monitoring to detect crashes of the critical features.
++ Client alerts when any feature stops functioning.
++ Active Redundancy ensuring seamless operation and minimal downtime during failures.
 
 ## Class Diagram
 ![Class Diagram](diagrams/ClassDiagram.jpeg)
 
 ## Sequence Diagram
 ![Sequence Diagram](diagrams/SequenceDiagram.jpeg)
+
+## What exactly the program does
+The program mimics a real-world smart doorbell system that requires continuous operation of critical features such as video recording, motion detection, and lock control. These features are essential for the functioning of a smart doorbell in scenarios like security and remote access management.
+1. Server Initialization - The server initializes both primary and secondary roles, ensuring dynamic role management. This simplifies role management and ensures that both roles are operational and ready to switch dynamically when required.
+2. Heartbeat Mechanism - Heartbeat Messages is sent every second, these messages indicate the status of each feature, allowing for quick failure detection. Messages are broadcast to connected clients, ensuring real-time updates on feature functionality.
+3. Client Monitoring: The client connects to the server and listens for heartbeat messages. If a feature stops, the client raises an immediate alert, keeping users informed of any issues.
+4. Failure Simulation: The system doesn't just simulate predictable failures; it introduces random crashes to replicate how failures might occur in real-world scenarios. Features can be stopped either randomly or by user command, simulating system failures.
+5. Fault Recovery and Role Switching: With active redundancy in place, both the primary and secondary servers run concurrently. If the primary server fails, the secondary server automatically takes over, ensuring continued operation. This setup minimizes downtime, allowing the system to function without interruption.
+6. Monitoring and System Recovery: Any failure in the system is immediately detected by the client, which raises an alert. This real-time notification mechanism ensures that users are informed instantly when something goes wrong, allowing them to respond quickly.
 
 ## How to Run:
 ### Server Setup:
